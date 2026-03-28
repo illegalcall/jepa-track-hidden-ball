@@ -1,0 +1,9 @@
+A ball is placed under cup 3.
+Cups are labeled 1 (left), 2 (center), 3 (right).
+
+The following swaps occur:
+  1. Cups 1 and 2 swap positions.
+  2. Cups 2 and 3 swap positions.
+  3. Cups 1 and 3 swap positions.
+
+Which cup is the ball under now? Answer with just the cup number.

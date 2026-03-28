@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JEPA Shell Tracker</title>
+    <link rel="stylesheet" href="/demo_ui/styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">JEPA Demo API</p>
+        <h1>Upload One Sheet. Get One Cup.</h1>
+        <p class="subtitle">
+          This page only runs the JEPA world model. The browser sends a shell-game contact sheet,
+          the server slices it into ordered frames, prints the job in the terminal, runs the model
+          through the API, and returns the final cup prediction.
+        </p>
+        <div class="hero-grid">
+          <article class="hero-card">
+            <span class="hero-kicker">Accepted Input</span>
+            <h2>5-column contact sheet</h2>
+            <p class="muted">
+              Upload a cropped image like your sheet screenshot. The parser assumes the same shell-game
+              grid format and reconstructs numbered frames automatically.
+            </p>
+          </article>
+          <article class="hero-card accent">
+            <span class="hero-kicker">API</span>
+            <h2><code>POST /api/run-jepa-sheet</code></h2>
+            <p class="muted">
+              Payload: <code>{ filename, imageBase64 }</code>. The page uses that endpoint directly.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <article class="panel panel-upload">
+          <div class="panel-head">
+            <div>
+              <p class="case-kicker">Input</p>
+              <h2>Contact Sheet</h2>
+            </div>
+            <span id="status-pill" class="status-pill">Idle</span>
+          </div>
+          <p class="muted block-copy">
+            Upload an image or load the built-in sample case. The server terminal will show the slicer
+            and the local JEPA CPU inference run.
+          </p>
+          <div id="dropzone" class="dropzone" tabindex="0">
+            <input id="file-input" type="file" accept="image/*" hidden />
+            <p class="drop-title">Drop a sheet here or choose an image</p>
+            <p class="drop-hint">Prefer the sheet itself, not a full browser screenshot.</p>
+            <div class="toolbar">
+              <button id="choose-button" class="button primary">Choose Image</button>
+              <button id="sample-button" class="button tertiary">Use Sample Sheet</button>
+              <button id="run-button" class="button secondary">Run JEPA</button>
+            </div>
+          </div>
+          <div class="preview-shell">
+            <img id="preview-image" class="preview-image" alt="Uploaded shell-game sheet preview" />
+            <div id="preview-empty" class="preview-empty">No image loaded yet.</div>
+          </div>
+          <div class="meta-strip">
+            <span id="source-label">Source: none</span>
+            <span id="api-label">API: waiting</span>
+          </div>
+        </article>
+
+        <article class="panel panel-result">
+          <div class="panel-head">
+            <div>
+              <p class="case-kicker">Output</p>
+              <h2>Final Cup</h2>
+            </div>
+            <span id="result-mode" class="status-pill status-pill-quiet">No run yet</span>
+          </div>
+          <div id="result-empty" class="result-empty">
+            The API response will appear here after inference.
+          </div>
+          <div id="result-card" class="result-card" hidden>
+            <div class="result-topline">
+              <div id="prediction-badge" class="prediction-badge">?</div>
+              <div>
+                <p class="result-label">Predicted Cup</p>
+                <h3 id="prediction-text">Cup ?</h3>
+                <p id="prediction-confidence" class="muted"></p>
+              </div>
+            </div>
+            <div id="prob-bars" class="prob-bars"></div>
+            <div class="result-grid">
+              <div class="datum">
+                <span class="datum-label">Frames</span>
+                <strong id="frames-value">-</strong>
+              </div>
+              <div class="datum">
+                <span class="datum-label">History</span>
+                <strong id="history-value">-</strong>
+              </div>
+              <div class="datum">
+                <span class="datum-label">Job</span>
+                <strong id="job-value">-</strong>
+              </div>
+              <div class="datum">
+                <span class="datum-label">Device</span>
+                <strong id="device-value">-</strong>
+              </div>
+            </div>
+            <details class="raw-panel">
+              <summary>Raw JSON response</summary>
+              <pre id="raw-json"></pre>
+            </details>
+          </div>
+        </article>
+      </section>
+
+      <section class="legend panel">
+        <p>
+          Watch the terminal that launched <code>serve_demo_ui.py</code>. That is where the slicer
+          and local JEPA inference logs are printed. The browser only shows the final API response.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/demo_ui/app.js"></script>
+  </body>
+</html>

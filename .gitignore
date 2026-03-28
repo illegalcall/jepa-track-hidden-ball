@@ -1,0 +1,92 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local tool state
+.agents/
+.augment/
+.claude/
+.continue/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Scratch / uploads / generated previews
+demo_uploads/
+preview/
+sample_episode/
+samples_v4/
+visual_test/
+preview_log.json
+verify_start.png
+verify_end.png
+sample_episode_annotated.png
+sample_full_episode.png
+ball_cup1_large.png
+ball_cup2_large.png
+ball_cup3_large.png
+ball_size_9px.png
+ball_size_18px.png
+ball_size_25px.png
+ball_size_35px.png
+
+# Large generated datasets
+*.h5
+curriculum/
+curriculum_v2/
+curriculum_fixed_v1/
+curriculum_fixed_smoketest/
+curriculum_transfer_v1/
+curriculum_aux_v1/
+curriculum_aux_*_v1/
+
+# Old candidate sets / tarballs
+demo_*_candidates/
+demo_*_candidates.tar.gz
+demo_exact3_cases/
+demo_exact3_cases.tar.gz
+llm_vision_test/
+puzzle_3_12swaps.tar.gz
+demo_ui/demo_data.json
+demo_cases/**/frames/
+demo_cases/**/ollama_text_result.json
+local_model_assets/*_verify.json
+local_model_assets/sample_local_result.json
+
+# Old comparison / scratch files
+demo_compare.py
+demo_ollama_text.py
+demo_ollama_vlm.py
+llm_baseline.py
+gcloud_setup.sh
+skills-lock.json
+starter.md
+publication/
+
+# Local media / editing artifacts
+video-editor/
+*.mov
+*.mp4
+screen-recording.webm
+subtitles.srt
+
+# Keep the publishable demo assets and local model bundle
+!demo_cases/
+!demo_cases/**
+!demo_model_safe_sheets/
+!demo_model_safe_sheets/**
+!demo_qa_cards/
+!demo_qa_cards/**
+!demo_ui/
+!demo_ui/**
+!local_inference_assets/
+!local_inference_assets/**
+!local_model_assets/
+!local_model_assets/**
